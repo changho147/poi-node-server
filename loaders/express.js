@@ -1,6 +1,7 @@
 const express = require("express");
 const config = require("../config");
 const routes = require("../api");
+const createError = require("http-errors");
 
 const { expressWinston, Logger, ErrorLogger } = require("./logger");
 
@@ -20,5 +21,14 @@ module.exports = async ({rootPath, app}) => {
 		winstonInstance: ErrorLogger
 	}));
 
-	return app;
+	app.use((request, response, next) => next(createError(405, "")));
+
+	app.use((error, request, response, next) => {
+		ErrorLogger.log("error", error);
+		response.status(error.status || 500);
+		response.json({
+			statusCode: error.errorCode || Number(9999),
+			message: error.message
+		});
+	});
 }

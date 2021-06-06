@@ -4,8 +4,8 @@ const dotenv = require("dotenv");
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
 
 const envMap = {
-	"production": ".env",
-	"development": "dev.env"
+	"production": ".env.prod",
+	"development": ".env.dev"
 };
 
 const env = dotenv.config({
@@ -13,7 +13,7 @@ const env = dotenv.config({
 });
 
 if (env.error)
-	throw new Error("Couldn't find .env file️");
+	throw new Error("Couldn't find .env file");
 
 module.exports = {
 	SERVER_PORT: process.env.SERVER_PORT || 8080,

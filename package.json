@@ -4,8 +4,8 @@
   "description": "poi-server",
   "main": "index.js",
   "scripts": {
-    "run-dev": "NODE_ENV='development' node app.js",
-    "run-prod": "NODE_ENV='production' node app.js"
+    "run-dev": "cross-env NODE_ENV='development' node app.js",
+    "run-prod": "cross-env NODE_ENV='production' node app.js"
   },
   "author": "changho147",
   "license": "ISC",
@@ -17,5 +17,8 @@
     "mongoose": "^5.12.12",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
