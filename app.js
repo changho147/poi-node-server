@@ -4,7 +4,7 @@ const loaders = require("./loaders");
 
 async function runServer() {
 	const app = express();
-	await loaders({rootPath: __dirname, app: app});
+	await loaders({app: app});
 
 	app.listen(config.SERVER_PORT, error => {
 		if (error)

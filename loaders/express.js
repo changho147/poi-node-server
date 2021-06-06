@@ -1,12 +1,13 @@
 const express = require("express");
+const path = require("path");
 const config = require("../config");
 const routes = require("../api");
 const createError = require("http-errors");
 
 const { expressWinston, Logger, ErrorLogger } = require("./logger");
 
-module.exports = async ({rootPath, app}) => {
-	app.use(express.static(`${rootPath}/public`));
+module.exports = async ({app}) => {
+	app.use(express.static(path.join(path.resolve(), "../", "/public")));
 	app.use(express.json());
 
 	app.use(expressWinston.logger({
